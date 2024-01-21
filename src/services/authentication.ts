@@ -15,7 +15,7 @@ export const DecodeToken = async (
     const security = Buffer.from(env.get("application.jwt")).toString("base64");
     const decoded = await Jwt.verify(token, security);
     return decoded as Partial<IAccount>;
-  } catch (error) {
+  } catch {
     return false;
   }
 };

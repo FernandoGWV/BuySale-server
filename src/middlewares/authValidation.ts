@@ -11,7 +11,7 @@ class AuthController {
     if (!token) {
       return resp.status(401).json({
         status: false,
-        message: "Unauthorized",
+        message: "Unauthorized token",
       });
     }
 
@@ -19,16 +19,6 @@ class AuthController {
       token.split("Bearer ").join("");
     }
 
-    const UserAuthenticaded: any = await DecodeToken(token as string);
-
-    if (!UserAuthenticaded) {
-      resp.status(401).json({
-        status: false,
-        message: "Unauthorized",
-      });
-    }
-    // @ts-expect-error
-    req.userAuthenticated = UserAuthenticaded;
     next();
   };
 }
