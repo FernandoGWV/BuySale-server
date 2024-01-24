@@ -21,6 +21,7 @@ class CreateAccountController {
       name: Joi.string().required(),
       password: Joi.string().required().min(5),
       wallet: Joi.number(),
+      userIcon: Joi.string(),
     }),
   });
 }
