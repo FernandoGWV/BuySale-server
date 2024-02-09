@@ -3,6 +3,7 @@ import IAccount from "../../dto/IAccount";
 import { EncryptPassword } from "@services/crypt";
 import { format } from "date-fns";
 import { Request } from "express";
+import { SignInUSer } from "@services/authentication";
 
 class CreateAccountUseCase {
   async execute(model: Partial<IAccount>, originalName: string) {
@@ -16,7 +17,7 @@ class CreateAccountUseCase {
         message: "Email já cadastrado.",
       };
     }
-
+    const token = await SignInUSer({ id: model.id, name: model.name });
     const passwordEncrypted = await EncryptPassword(String(model.password));
 
     await connection("users").insert({
@@ -30,6 +31,11 @@ class CreateAccountUseCase {
     return {
       status: true,
       message: "Usuário criado com sucesso.",
+      token,
+      user: {
+        ...model,
+        password: "**",
+      },
     };
   }
 }

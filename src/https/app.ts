@@ -3,6 +3,7 @@ import express from "express";
 import http from "http";
 import AppRoutes from "./routes";
 import cors from "cors";
+import path from "path";
 
 class App {
   private application: express.Application;
@@ -18,7 +19,7 @@ class App {
     this.forwardServer = http.createServer(this.application);
   }
 
-  config() {
+  config(): void {
     this.application.use(
       cors({
         origin: "*",
@@ -28,9 +29,10 @@ class App {
     this.application.use(express.json());
   }
 
-  loadRoutes() {
+  loadRoutes(): void {
     this.application.use("/", AppRoutes);
     this.application.use(errors());
+    this.application.use("/public", express.static("public"));
   }
 
   run(port: number, cb: () => void) {

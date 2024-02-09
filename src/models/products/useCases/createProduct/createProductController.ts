@@ -22,13 +22,11 @@ class CreateProductController {
     [Segments.PARAMS]: Joi.object().keys({
       IdUser: Joi.number().required(),
     }),
-
     [Segments.BODY]: Joi.object().keys({
       title: Joi.string().required(),
       descripte: Joi.string().required(),
       price: Joi.number().required(),
       like: Joi.number(),
-      image: Joi.string(),
     }),
   });
 }
