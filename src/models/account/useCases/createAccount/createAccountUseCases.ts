@@ -35,6 +35,7 @@ class CreateAccountUseCase {
       user: {
         ...model,
         password: "**",
+        userIcon: originalName
       },
     };
   }

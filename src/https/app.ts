@@ -3,7 +3,7 @@ import express from "express";
 import http from "http";
 import AppRoutes from "./routes";
 import cors from "cors";
-import path from "path";
+
 
 class App {
   private application: express.Application;
@@ -27,6 +27,7 @@ class App {
     );
 
     this.application.use(express.json());
+    this.application.use(errors());
   }
 
   loadRoutes(): void {

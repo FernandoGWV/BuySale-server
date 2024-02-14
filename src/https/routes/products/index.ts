@@ -4,7 +4,6 @@ import AuthController from "../../../middlewares/authValidation";
 import UpdateProductController from "../../../models/products/useCases/updateProduct/updateProductController";
 import ListProductController from "../../../models/products/useCases/listProducts/listProductController";
 import DeleteProductController from "../../../models/products/useCases/deleteProduct/deleteProductController";
-import multer from "multer";
 const ProductRouter = Router();
 
 const createProductController = new CreateProductController();
@@ -12,7 +11,6 @@ const updateProductController = new UpdateProductController();
 const listProductController = new ListProductController();
 const deleteProductController = new DeleteProductController();
 const uploadImagesController = new UpdateProductController();
-const upload = multer({ dest: "./public/imagesProducts" });
 ProductRouter.get(
   "/",
   listProductController.handle,
