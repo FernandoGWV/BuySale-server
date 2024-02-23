@@ -6,7 +6,6 @@ class CreateAccountController {
   async handle(req: Request, res: Response) {
     const model = req.body;
     const { path }: any = req.file;
-    console.log(req.file);
     const result = await new CreateAccountUseCase().execute(model, path);
 
     if (result.status) {

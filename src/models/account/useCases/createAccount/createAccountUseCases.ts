@@ -11,6 +11,7 @@ class CreateAccountUseCase {
       .select("id")
       .where({ email: model.email })
       .first();
+
     if (emailAlreadyTaken) {
       return {
         status: false,
@@ -20,22 +21,23 @@ class CreateAccountUseCase {
     const token = await SignInUSer({ id: model.id, name: model.name });
     const passwordEncrypted = await EncryptPassword(String(model.password));
 
-    await connection("users").insert({
+    const insertResult = await connection("users").insert({
       ...model,
       userIcon: originalName,
       password: passwordEncrypted,
       createdAt: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
       updatedAt: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
     });
-
+    const userId = insertResult[0];
     return {
       status: true,
       message: "Usuário criado com sucesso.",
       token,
       user: {
         ...model,
+        id: userId,
         password: "**",
-        userIcon: originalName
+        userIcon: originalName,
       },
     };
   }

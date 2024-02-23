@@ -4,6 +4,7 @@ import { Joi, Segments, celebrate } from "celebrate";
 
 class ListProductController {
   async handle(req: Request, res: Response) {
+    const { idProduct } = req.params;
     const result = await new ListProductsUseCase().execute();
     if (result.status) {
       return res.status(200).json({ ...result });
