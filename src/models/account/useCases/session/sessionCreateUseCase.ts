@@ -17,10 +17,7 @@ class SessionCreateUseCase {
           status: true,
           message: "sucesso",
           token,
-          user: {
-            ...data,
-            password: "**",
-          },
+          id: data.id,
         };
       } else {
         return {
