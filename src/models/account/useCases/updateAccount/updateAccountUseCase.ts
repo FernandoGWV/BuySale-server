@@ -3,7 +3,7 @@ import IAccount from "../../dto/IAccount";
 import { ComparePassword, EncryptPassword } from "@services/crypt";
 
 class UpdateAccountUseCase {
-  async execute(model: Partial<IAccount>, IdUser: number) {
+  async execute(model: Partial<IAccount>, IdUser: number, path: string) {
     const updateUser = await connection("users")
       .select("*")
       .where({ id: IdUser })
@@ -48,7 +48,7 @@ class UpdateAccountUseCase {
     }
 
     await connection("users")
-      .update({ ...model })
+      .update({ ...model, userIcon: path })
       .where({ id: IdUser });
 
     return {
