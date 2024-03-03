@@ -7,5 +7,5 @@ const app = new App();
 
 app.run(env.get("application.port"), () => {
   const port = env.get("application.port");
-  console.log(`Server rodando 127.0.0.1:${port}`);
+  console.log(`connection 127.0.0.1:${port}`);
 });
