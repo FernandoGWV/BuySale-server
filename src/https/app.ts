@@ -57,7 +57,7 @@ class App {
       ) => {
         console.log("user connect =>", socket.id);
         socket.on("message", (message: any) => {
-          this.io.emit("message", message);
+          socket.broadcast.emit("message", message);
         });
       }
     );
