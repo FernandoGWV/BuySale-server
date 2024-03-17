@@ -38,7 +38,7 @@ AccountRoutes.post(
 AccountRoutes.put(
   "/updateAccount/:IdUser",
   AuthController.HeaderAuth,
-  upload.single("iconUser"),
+  upload?.single("userIcon"),
   updateAccountController.handle,
   updateAccountController.validate
 );

@@ -6,12 +6,12 @@ class UpdateAccountController {
   async handle(req: Request, res: Response) {
     const model = req.body;
     const { IdUser } = req.params;
-    const { path }: any = req.file;
 
+    console.log(model);
     const result = await new UpdateAccountUseCase().execute(
       model,
       Number(IdUser),
-      path
+      req.file?.path
     );
 
     if (result.status) {

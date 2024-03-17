@@ -11,9 +11,14 @@ class ListProductsUseCase {
       const images = await connection("images_product")
         .select("*")
         .where({ product_id: product.id });
+      const dataMessage = await connection("chat_product")
+        .select("*")
+        .where({ product_id: product.id });
+
       productsWithImages.push({
         ...product,
         images: images,
+        messages: dataMessage,
       });
     }
 

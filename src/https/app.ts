@@ -55,9 +55,17 @@ class App {
           any
         >
       ) => {
-        console.log("user connect =>", socket.id);
-        socket.on("message", (message: any) => {
-          socket.broadcast.emit("message", message);
+        socket.on("entrarNaSala", (productId: any) => {
+          console.log("entrou na sala", productId);
+          socket.join(productId);
+        });
+        socket.on(String("message"), (data: any) => {
+          const { productId, mensagem } = data;
+          console.log(
+            `mensagem do cliente para o produto ${productId}`,
+            mensagem
+          );
+          socket.broadcast.to(productId).emit("message", mensagem);
         });
       }
     );
