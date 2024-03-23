@@ -3,6 +3,7 @@ interface IAccount {
   name: string;
   email: string;
   password: string;
+  wallet: number;
   createdAt: Date;
   updateAt: Date;
 }
