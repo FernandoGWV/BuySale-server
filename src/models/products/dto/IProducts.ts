@@ -4,7 +4,7 @@ interface IProducts {
   like: number;
   price: number;
   title: string;
-  image: string;
+  image: any;
   descripte: string;
   createdAt: Date;
   updatedAt: Date;

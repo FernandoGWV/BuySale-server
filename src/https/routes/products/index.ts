@@ -6,6 +6,7 @@ import ListProductController from "../../../models/products/useCases/listProduct
 import DeleteProductController from "../../../models/products/useCases/deleteProduct/deleteProductController";
 import CreateMessagesController from "../../../models/messages/useCase/CreateMessages/createMessagesController";
 import BuyProductController from "../../../models/products/useCases/buyProduct/buyProductController";
+import ListPurchasedController from "../../../models/products/useCases/listProducts/listPurchased/ListPurchasedController";
 const ProductRouter = Router();
 
 const createProductController = new CreateProductController();
@@ -15,6 +16,7 @@ const deleteProductController = new DeleteProductController();
 const uploadImagesController = new UpdateProductController();
 const createMessagesController = new CreateMessagesController();
 const buyProductController = new BuyProductController();
+const listProductPurchased = new ListPurchasedController()
 
 ProductRouter.get(
   "/",
@@ -55,5 +57,10 @@ ProductRouter.post(
   AuthController.HeaderAuth,
   buyProductController.handle,
 );
+
+ProductRouter.get('/listProductsPurchased/:userId',
+  AuthController.HeaderAuth,
+  listProductPurchased.handle
+)
 
 export default ProductRouter;
